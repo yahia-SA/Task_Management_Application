@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# scripts
+backend/scripts/
+
 # Environment variables
 *.env
 
