@@ -1,0 +1,52 @@
+### Global Variables
+@baseUrl = http://localhost:3000
+@authToken = {{login.response.body.token}}
+
+### 1. Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+    "name": "Rest Client User",
+    "email": "rest@client.com",
+    "password": "Password123!"
+}
+
+### 2. Login User
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "rest@client.com",
+    "password": "Password123!"
+}
+
+### 3. Create Task
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Test Task via REST Client",
+    "description": "This task was created using VS Code REST Client"
+}
+
+### 4. Get Tasks
+GET {{baseUrl}}/tasks
+Authorization: Bearer {{authToken}}
+
+### 5. Update Task
+# Replace :id with an actual ID from the Get Tasks response
+# You can manually copy an ID or use environment variables if you get fancy
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "status": "in_progress"
+}
+
+### 6. Delete Task
+DELETE {{baseUrl}}/tasks/1
+Authorization: Bearer {{authToken}}
